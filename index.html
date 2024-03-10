@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Power BI Embedded Reports</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+
+    /* Style for the left-side container */
+    .left-container {
+      display: flex;
+      flex-direction: column;
+      background-color: #31363F;
+      width: 200px; /* Adjust the width of the left container as needed */
+      padding: 10px;
+    }
+
+    /* Style for the logo */
+    .logo {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    /* Style for the heading */
+    .heading {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    /* Style for the left-side tabs */
+    .tab {
+      padding: 10px;
+      cursor: pointer;
+      border: 1px solid #f0ebeb;
+      color: #fff;
+      font-size: 14px;
+      margin-bottom: 5px;
+      transition: background-color 0.3s ease; /* Smooth transition effect */
+    }
+
+    .tab:hover {
+      background-color: #3498db;
+    }
+
+    /* Style for the selected tab */
+    .tab.selected {
+      background-color: #3498db; /* Change the background color for the selected tab */
+      color: #fff; /* Change the text color for better visibility */
+    }
+
+    /* Style for the iframe to take full height */
+    #contentFrame {
+      flex: 1;
+      border: none;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Left-side Container with Logo, Heading, and Tabs -->
+<div class="left-container">
+  <img class="logo" src="file.png" alt="Logo">
+  <!-- <div class="heading">Power BI Reports</div> -->
+  <div class="tab" onclick="changeIframeSource('https://app.powerbi.com/reportEmbed?reportId=e2c8d20d-f9b8-4598-b3ad-4deff3f7d73a&autoAuth=true&ctid=ea1f9c15-7f32-4dfa-b662-cacea1f61d0f', this)">Training School</div>
+  <div class="tab" onclick="changeIframeSource('https://app.powerbi.com/reportEmbed?reportId=dff51272-b967-4e57-87dd-6a51f7dbcbf3&autoAuth=true&ctid=ea1f9c15-7f32-4dfa-b662-cacea1f61d0f', this)">Production Tracking</div>
+  <!-- Add more tabs for additional Power BI reports -->
+</div>
+
+<!-- Iframe to display selected Power BI report -->
+<iframe id="contentFrame" title="Selected Content"></iframe>
+
+<script>
+  // Function to change the source of the iframe and highlight the selected tab
+  function changeIframeSource(url, tabElement) {
+    document.getElementById('contentFrame').src = url;
+
+    // Remove the 'selected' class from all tabs
+    var tabs = document.querySelectorAll('.tab');
+    tabs.forEach(function(tab) {
+      tab.classList.remove('selected');
+    });
+
+    // Add the 'selected' class to the clicked tab
+    tabElement.classList.add('selected');
+  }
+
+  // Set the initial source of the iframe and highlight the corresponding tab (optional)
+  var initialTab = document.querySelector('.tab:first-child');
+  changeIframeSource('https://app.powerbi.com/reportEmbed?reportId=e2c8d20d-f9b8-4598-b3ad-4deff3f7d73a&autoAuth=true&ctid=ea1f9c15-7f32-4dfa-b662-cacea1f61d0f', initialTab);
+</script>
+
+</body>
+</html>
